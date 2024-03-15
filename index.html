@@ -4,15 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Steam App Search</title>
+    <style>
+        /* Your CSS styles here */
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Steam App Search</h1>
-        <input id="search-input" type="text" placeholder="Search for an app...">
-        <ul id="search-results" style="display: none;"></ul>
-        <div id="app-details"></div>
+        <h2>Steam App Search</h2>
+        <input type="text" id="searchInput" placeholder="Search by App Name or App ID">
+        <div id="searchSuggestions"></div>
+        <div id="appDetails">
+            <!-- App details will be displayed here -->
+        </div>
     </div>
 
+    <!-- Adjust the src attribute to the correct file path -->
     <script src="script.js"></script>
 </body>
 </html>
