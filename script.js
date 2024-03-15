@@ -44,20 +44,31 @@ function displaySearchSuggestions(apps) {
     });
 }
 
-function fetchAppDetails(appId) {
-    fetch(`https://store.steampowered.com/api/appdetails?appids=${appId}`)
+// Function to fetch app details from Steam API
+function fetchAppDetails(appid) {
+    fetch(`https://store.steampowered.com/api/appdetails?appids=${appid}`)
         .then(response => response.json())
         .then(data => {
-            const appData = data[appId].data;
-            appDetailsContainer.innerHTML = `
-                <h3>${appData.name}</h3>
-                <p>${appData.detailed_description}</p>
-                <p>Supported Languages: ${appData.supported_languages}</p>
-                <img src="${appData.header_image}" alt="Header Image">
+            const appData = data[appid].data; // Extract app data from the response
+            // Update HTML content to display app details
+            document.getElementById('app-details').innerHTML = `
+                <h2>${appData.name}</h2>
+                <p>${appData.short_description}</p>
+                <img src="${appData.header_image}" alt="${appData.name}">
+                <!-- Add more details as needed -->
             `;
-            // You can add more details as needed
         })
         .catch(error => {
             console.error('Error fetching app details:', error);
         });
+}
+
+// Event listener for selecting an app from the search results
+document.getElementById('search-results').addEventListener('click', function(event) {
+    const selectedApp = event.target.closest('li'); // Get the closest <li> element
+    if (selectedApp) {
+        const appid = selectedApp.dataset.appid; // Get the appid from the data attribute
+        fetchAppDetails(appid); // Fetch and display app details
+    }
+});
 }
