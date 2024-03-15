@@ -5,7 +5,7 @@ const appDetailsContainer = document.getElementById('appDetails');
 let appList; // Variable to store the loaded app list
 
 // Fetch the app list JSON file
-fetch('https://raw.githubusercontent.com/arg6063/test/main/appList.json')
+fetch('appList.json')
     .then(response => response.json())
     .then(data => {
         appList = data.applist.apps; // Store the app list data
