@@ -1,3 +1,15 @@
+// Function to fetch the app list from JSON file
+function fetchAppList() {
+    fetch('appList.json')
+        .then(response => response.json())
+        .then(data => {
+            window.appList = data; // Store the appList data globally
+        })
+        .catch(error => {
+            console.error('Error fetching app list:', error);
+        });
+}
+
 // Function to fetch app details from Steam API
 function fetchAppDetails(appid) {
     fetch(`https://store.steampowered.com/api/appdetails?appids=${appid}`)
